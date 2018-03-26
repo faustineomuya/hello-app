@@ -1,1 +1,8 @@
+#Ignore file named vscode
 .vscode
+
+#Ignore file named venv - This is virtual environment
+venv/
+
+#Ignore file named pytest_cache
+.pytest_cache
