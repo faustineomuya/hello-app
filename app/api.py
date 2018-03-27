@@ -42,6 +42,13 @@ def login():
     if not user:
         return ({'message': 'Login credentials not recognized'})
 
+app.route('/api/auth/logout/', methods = ['POST'])
+'''
+This method is used to validate user logout
+'''
+def logout():
+    session.pop('email')
+    return ({'message': 'User logout successful'})
 
 
     
