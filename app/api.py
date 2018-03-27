@@ -32,11 +32,16 @@ def register()
 
 app.route('/api/auth/login/', methods=['POST'])
 
-#Still working on login endpoint
-#def login():
- #   user = hello_book_users()
-  #  username = request.json['username']
-   # password = request.json['password']
+def login():
+    user = hello_book_users()
+    username = request.json['username']
+    password = request.json['password']
+ for user in user_list:
+     if user ['username'] == username and user['password'] == password:
+         return ({'message': 'User login successful'})
+    if not user:
+        return ({'message': 'Login credentials not recognized'})
+
 
 
     
