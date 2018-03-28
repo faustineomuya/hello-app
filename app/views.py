@@ -1,12 +1,16 @@
 from flask import Flask, jsonify, request, session #from flask import classes
 import re #re is a module that assists in regular expression(checks if certain formats are met)
+from app import app
+
 from app.hb_users import hello_book_users 
 
-app=Flask(__name__)
+@app.route('/')
+def hello():
+    return "Hello World"
 
 @app.route('/api/auth/register/', methods=['POST']) #This a url path using method POST when registering new user
 
-def register()
+def register():
     '''
     This method is used to validate user registration
     '''
@@ -30,25 +34,40 @@ def register()
         return jsonify({'message': 'Registration succesful'}), 201
 
 
-app.route('/api/auth/login/', methods=['POST'])
+@app.route('/api/auth/login/', methods=['POST'])
 
 def login():
+    '''
+    This method validated user login
+    '''
     user = hello_book_users()
     username = request.json['username']
     password = request.json['password']
- for user in user_list:
-     if user ['username'] == username and user['password'] == password:
-         return ({'message': 'User login successful'})
-    if not user:
-        return ({'message': 'Login credentials not recognized'})
 
-app.route('/api/auth/logout/', methods = ['POST'])
-'''
-This method is used to validate user logout
-'''
+    for user in user_list:
+        if user ['username'] == username and user['password'] == password:
+            return ({'message': 'User login successful'})
+        if not user:
+            return ({'message': 'Login credentials not recognized'})
+
+
+@app.route('/api/auth/logout/', methods = ['POST'])
+
 def logout():
     session.pop('email')
     return ({'message': 'User logout successful'})
+
+
+@app.route('/api/auth/reset-password/', methods= ['POST'])
+
+def password_reset():
+    '''
+    This method validates password reset for user
+    '''
+    pass
+
+
+          
 
 
     
